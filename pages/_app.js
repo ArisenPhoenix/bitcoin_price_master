@@ -13,7 +13,10 @@ function BitcoinGuesser({ Component, pageProps }) {
       <ThemeProvider breakpoints={["xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}>
         <BootStrapContainer>
           <NavigationContextProvider>
-            <UserProvider>
+            <UserProvider
+              loginUrl={process.env.AUTH0_BASE_URL + "/api/auth/login"}
+              profileUrl={process.env.AUTH0_BASE_URL + "/api/auth/me"}
+            >
               <AUTH_CONTEXT_PROVIDER>
                 <Layout>
                   <Component {...pageProps} />
