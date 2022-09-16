@@ -30,5 +30,27 @@
 }
 
 .Time {
+  padding: auto;
+}
+
+.timeBox {
+  padding: 20px;
+  display: inline;
   background-color: black;
+}
+
+@media screen and (min-width: 560px) {
+  .Time {
+    padding: 5px;
+    font-size: xx-large;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Time {
+    padding: 5px;
+  }
+  .timeBox {
+    padding: 10px;
+  }
 }

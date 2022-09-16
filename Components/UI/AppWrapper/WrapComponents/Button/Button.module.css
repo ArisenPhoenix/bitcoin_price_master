@@ -2,3 +2,13 @@
   border-width: 0;
   padding-bottom: 2%;
 }
+
+.styleText {
+  font-size: xx-large;
+}
+
+@media screen and (max-width: 500px) {
+  .styleText {
+    font-size: x-large;
+  }
+}

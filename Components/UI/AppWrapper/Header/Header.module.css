@@ -32,13 +32,8 @@
 }
 
 .color {
-  /* background-color: #f7f6e7 !important; */
   background-image: radial-gradient(farthest-side at 50%, #f7f6e7, #e7e6e1);
 }
-
-/* .height {
-  height: 100vh !important;
-} */
 
 @media only screen and (max-width: 767px) {
   .header {
@@ -69,4 +64,9 @@
   .in {
     display: none;
   }
+}
+
+.color {
+  /* background-color: #f7f6e7 !important; */
+  background-image: radial-gradient(farthest-side at 50%, #f7f6e7, #e7e6e1);
 }

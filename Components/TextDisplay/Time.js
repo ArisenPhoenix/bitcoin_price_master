@@ -21,8 +21,8 @@ const Time = (props) => {
       <td>
         <h1 className={css.Text}>{props.text}</h1>
       </td>
-      <td>
-        <h1 className={`${css.Time} ${colorClass}`}>{props.time}</h1>
+      <td className={css.timeBox}>
+        <h1 className={`${css.Time} ${colorClass}`}>{checkTime}</h1>
       </td>
     </Fragment>
   );

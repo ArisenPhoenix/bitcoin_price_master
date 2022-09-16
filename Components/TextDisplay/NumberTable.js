@@ -1,5 +1,4 @@
 import css from "./NumberTable.module.css";
-// import { Price, Score, Time } from "./TextDisplay";
 import Price from "./Price";
 import Score from "./Score";
 import Time from "./Time";

@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import DropDown from "../DropDownNavigation/DropDown";
 import css from "./Header.module.css";
 import ButtonLink from "../WrapComponents/Button/Button";
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import NavigationContext from "../../../../store/navigation-context";
 import { AUTH_CONTEXT } from "../../../../AUTH_GUARD/AUTH_GUARD";
 
@@ -71,7 +71,7 @@ const Header = () => {
               </Navbar.Text>
             )}
           </Nav>
-          {in_}
+          {/* {in_} */}
         </Navbar.Collapse>
         {out}
       </Navbar>

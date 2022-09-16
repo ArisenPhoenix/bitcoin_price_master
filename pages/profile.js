@@ -8,7 +8,13 @@ const Profile = () => {
   return (
     user && (
       <div>
-        <Image src={user.picture} alt={user.name} loading="lazy" />
+        <Image
+          src={user.picture}
+          alt={user.name}
+          loading="lazy"
+          width={40}
+          height={40}
+        />
         <h2>{user.name}</h2>
         <p>{user.email}</p>
       </div>

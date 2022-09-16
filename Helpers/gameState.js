@@ -1,11 +1,11 @@
 import { saveUserData } from "../Components/PriceDisplay/handleData";
 import { AWS_PUT } from "./FETCH/FETCH";
 // import { dataToItem } from "";
-export const SaveToStorage = (gameState) => {
+export const SaveToStorage = (gameState, option) => {
   const data = JSON.stringify(gameState);
   const oldData = RetreiveFromStorage();
   localStorage.setItem("gameState", data);
-  if (oldData.score !== gameState.score) {
+  if (oldData.score !== gameState.score && option !== "init") {
     AWS_PUT(gameState);
   }
 };

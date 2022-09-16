@@ -7,14 +7,13 @@ import TimeContext from "../../store/time-context";
 import useCountDown from "../../hooks/useCountDown";
 import PriceVsPrice from "../TextDisplay/PriceVsPrice";
 import Message from "../TextDisplay/Message";
-import { useEffect, useState, useContext, Fragment } from "react";
+import { useEffect, useState, useContext } from "react";
 import { get_current_price, get_next_price } from "./getPriceRequests";
 import { useUser } from "@auth0/nextjs-auth0";
 import { SaveToStorage } from "../../Helpers/gameState";
 
 const PriceDisplay = (props) => {
   // Persisting State
-
   const g = props.startingState;
   const { user } = useUser();
   const timeCtx = useContext(TimeContext);

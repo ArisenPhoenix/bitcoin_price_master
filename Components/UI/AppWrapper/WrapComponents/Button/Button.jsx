@@ -1,4 +1,3 @@
-import { updateNonNullChain } from "typescript";
 import Link from "../../../Link/Link";
 import css from "./Button.module.css";
 
@@ -57,12 +56,12 @@ const Button = (props) => {
         {props.href ? (
           <a href={props.href ? props.href : null}>{props.text}</a>
         ) : (
-          props.text
+          <h1 className={css.styleText}>{props.text}</h1>
         )}
       </button>
     );
   } else if (props.type === "dropDown") {
-    classes = `${props.className} ${css.unbootstrapped}`;
+    classes = `${props.className} ${css.unbootstrapped} dropdown-item`;
     type_ = (
       <button
         className={classes}
