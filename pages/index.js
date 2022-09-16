@@ -8,8 +8,8 @@ import { SaveToStorage } from "../Helpers/gameState";
 import { useEffect } from "react";
 
 const Landing = () => {
+  const { user } = useUser();
   useEffect(() => {
-    const { user } = useUser();
     if (!user) {
       SaveToStorage(basic_user_profile());
     }
