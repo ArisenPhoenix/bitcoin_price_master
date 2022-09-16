@@ -34,18 +34,12 @@ a {
   padding: 0 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
-
 /* _____________________________________ All For Top Nav _______________________________________________________ */
 @media only screen and (min-width: 768px) {
+  .show {
+    justify-content: center !important;
+    text-align: center !important;
+  }
   .dropdown-menu {
     text-align: center !important;
     background-color: aliceblue !important;
@@ -56,6 +50,20 @@ a {
   }
 }
 
+@media only screen and (max-width: 991) {
+  a {
+    align-self: center !important;
+  }
+  .navbar-nav,
+  .me-auto {
+    align-items: center !important;
+  }
+
+  .navbar.center .navbar-inner {
+    text-align: center;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .dropdown-toggle {
     justify-content: center !important;
@@ -63,12 +71,28 @@ a {
     align-self: center !important;
   }
 
-  /* The Actual Button */
-  .navbar-toggler {
-    margin-left: auto !important;
+  .in {
+    width: 100%;
+    margin: auto;
+  }
+  .show {
+    display: block;
+    width: 100% !important;
+    margin: auto !important;
+    text-align: center !important;
   }
 
-  /* The Div containing the collapsable links, Centers Them */
+  .dropdown-menu.show {
+    width: 50% !important;
+    margin-left: 25% !important;
+  }
+
+  /* The Actual Button */
+  .navbar-toggler {
+    margin-left: auto;
+  }
+
+  /* The Div containing the collapsable links */
   .navbar-collapse {
     text-align: center !important;
   }
