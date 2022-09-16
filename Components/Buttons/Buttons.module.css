@@ -1,0 +1,38 @@
+.buttonDiv {
+  display: block !important;
+  position: relative !important;
+  width: 100%;
+}
+
+.higher,
+.lower {
+  display: block !important;
+  border-width: 0.4rem;
+  border-radius: 20px;
+  border-style: inset;
+  width: 30% !important;
+  height: fit-content !important;
+  background-color: rgb(255, 255, 255);
+  padding: 12px;
+  margin: 2rem auto 2rem auto;
+}
+
+.secondaryDiv {
+  display: block;
+  width: 100%;
+}
+
+.higher {
+  border-color: rgb(20, 223, 20);
+}
+
+.lower {
+  border-color: red;
+}
+
+@media screen and (max-width: 575px) {
+  .higher,
+  .lower {
+    width: 65% !important;
+  }
+}

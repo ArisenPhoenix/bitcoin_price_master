@@ -1,0 +1,46 @@
+.priceDisplay {
+  height: fit-content;
+}
+
+.numberDisplayCard {
+  width: 80% !important;
+  margin: auto !important;
+}
+
+.numberSpan {
+  width: 100%;
+  margin: auto;
+}
+
+/* .results {
+  font-size: larger;
+} */
+
+.resultsCard {
+  padding: 1%;
+  margin-bottom: 5% !important;
+}
+
+.center {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 420px) {
+  .results {
+    font-size: x-large;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .results {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .results {
+    font-size: medium;
+  }
+}

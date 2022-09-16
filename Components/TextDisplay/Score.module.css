@@ -1,0 +1,19 @@
+.container,
+.Score,
+.Text {
+  display: inline !important;
+}
+
+.Score,
+.Text {
+  position: relative;
+}
+
+.left {
+  width: 60%;
+}
+
+.right {
+  width: 40%;
+  max-width: fit-content;
+}

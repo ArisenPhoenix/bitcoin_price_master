@@ -1,0 +1,73 @@
+.heading {
+  width: 100%;
+  margin: auto;
+}
+
+.container {
+  padding: 2% 10% 2% 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  max-width: 100% !important;
+  text-align: left !important;
+  overflow-x: scroll;
+  table-layout: fixed;
+  border-width: 2px;
+}
+
+.text {
+  font-size: x-large;
+}
+
+.left {
+  width: 60%;
+}
+
+.right {
+  width: 20%;
+}
+
+.operatorTd {
+  width: 100%;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.operator {
+  font-size: 3rem;
+}
+
+.centered {
+  text-align: center;
+}
+
+.message {
+  font-size: xx-large;
+}
+
+@media screen and (min-width: 770) {
+  .text {
+    font-size: xx-large !important;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .text {
+    font-size: larger;
+  }
+
+  .left {
+    width: 55%;
+  }
+  .right {
+    width: 25%;
+  }
+  .operatorId,
+  .operator {
+    text-align: right !important;
+    margin-right: 15%;
+  }
+}

@@ -1,0 +1,25 @@
+.container,
+.Price,
+.Text {
+  display: inline !important;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+}
+
+.Price,
+.Text {
+  width: 50%;
+  margin: auto;
+}
+
+.left {
+  width: 60%;
+}
+
+.right {
+  width: 40%;
+  max-width: fit-content;
+}

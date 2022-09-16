@@ -1,0 +1,24 @@
+.container {
+  padding: 3%;
+  width: 100%;
+  margin: auto;
+}
+
+.table {
+  width: 100%;
+  max-width: 100% !important;
+  text-align: left !important;
+  overflow-x: scroll;
+  table-layout: fixed;
+  border: 1px !important;
+  margin: auto 10% auto 10%;
+}
+
+.leftRow {
+  width: 60%;
+}
+
+.rightRow {
+  width: 40%;
+  max-width: fit-content;
+}
