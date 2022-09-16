@@ -1,5 +1,3 @@
-import { convert_unix_timestamp } from "../../Helpers/getDate";
-
 const get_btc_data = async (req, res) => {
   const currentUnixTime = Math.round(new Date().getTime() / 1000);
   const cur = "bitcoin";
@@ -7,14 +5,11 @@ const get_btc_data = async (req, res) => {
   const query = "market_chart/range?vs_currency=usd&";
   const from = currentUnixTime;
   const to = from + 1000;
-  console.log("hishtory from: ", from);
-  console.log("history to: ", to);
   const string = `${base}/${cur}/${query}&from=${from}&to=${to}`;
 
   await new Promise((resolve, reject) => {
     fetch(string)
       .then((resp) => {
-        // console.log(resp);
         return resp.json();
       })
       .then((data) => {
