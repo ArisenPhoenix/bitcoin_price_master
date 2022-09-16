@@ -17,8 +17,8 @@ function BitcoinGuesser({ Component, pageProps }) {
         <BootStrapContainer>
           <NavigationContextProvider>
             <UserProvider
-            // loginUrl="https://bitcoin-price-master.vercel.app/api/auth/login"
-            // profileUrl="https://bitcoin-price-master.vercel.app/api/auth/me"
+              loginUrl="https://bitcoin-price-master.vercel.app/api/auth/login"
+              profileUrl="https://bitcoin-price-master.vercel.app/api/auth/me"
             >
               <AUTH_CONTEXT_PROVIDER>
                 <Layout>
