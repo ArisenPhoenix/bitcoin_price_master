@@ -31,7 +31,7 @@ const Header = () => {
     }
   };
 
-  const in_ = <DropDown id="in" className={`in ${css.in}`} title="Profile" />;
+  // const in_ = <DropDown id="in" className={`in ${css.in}`} title="Profile" />;
   const out = (
     <DropDown id="out" className={`out ${css.out}`} title="Profile" />
   );

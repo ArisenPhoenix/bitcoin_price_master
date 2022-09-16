@@ -50,7 +50,7 @@
     display: none;
   }
 }
-
+/* 
 @media only screen and (min-width: 768px) {
   .end {
     text-align: right;
@@ -59,12 +59,12 @@
   }
   .currentPosition {
     justify-content: center;
-    /* margin-left: 3.5vw; */
+    margin-left: 3.5vw;
   }
   .in {
     display: none;
   }
-}
+} */
 
 .color {
   /* background-color: #f7f6e7 !important; */

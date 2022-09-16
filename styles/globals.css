@@ -44,9 +44,32 @@ a {
   }
 }
 
+/* _____________________________________ All For Top Nav _______________________________________________________ */
+@media only screen and (min-width: 768px) {
+  .dropdown-menu {
+    text-align: center !important;
+    background-color: aliceblue !important;
+  }
+  .dropdown {
+    margin-left: -20px;
+    margin-right: 16px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
-  /* Fixes The Mobile Dropdown to be in the center rather than left, using react-bootstrap required a global style */
-  .show {
+  .dropdown-toggle {
+    justify-content: center !important;
+    text-align: center !important;
+    align-self: center !important;
+  }
+
+  /* The Actual Button */
+  .navbar-toggler {
+    margin-left: auto !important;
+  }
+
+  /* The Div containing the collapsable links, Centers Them */
+  .navbar-collapse {
     text-align: center !important;
   }
 }
