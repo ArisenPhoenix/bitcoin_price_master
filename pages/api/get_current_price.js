@@ -18,7 +18,7 @@ const get_current_price = async (req, res) => {
         return resp.json();
       })
       .then((data) => {
-        console.log("CURRENT PRICE DATA: ", data);
+        // console.log("CURRENT PRICE DATA: ", data);
         return resolve(res.send(data));
       })
       .catch((err) => {

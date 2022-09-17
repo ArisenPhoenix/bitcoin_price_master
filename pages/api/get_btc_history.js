@@ -13,12 +13,12 @@ const get_btc_data = async (req, res) => {
         return resp.json();
       })
       .then((data) => {
-        console.log("data: ", data);
+        // console.log("data: ", data);
         return resolve(res.send(data));
       })
       .catch((err) => {
-        console.log("ERROR");
-        return console.log(err);
+        console.log("ERROR: ", err);
+        return reject(res.send(err));
       });
   });
 };

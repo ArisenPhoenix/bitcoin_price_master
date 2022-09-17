@@ -7,7 +7,7 @@ const comparePrices = (
   setScore,
   setMessage
 ) => {
-  console.log("currentPrice: ", currentPrice, "previousPrice: ", previousPrice);
+  // console.log("currentPrice: ", currentPrice, "previousPrice: ", previousPrice);
   const winMessage = { message: "You Won 1" };
   const loseMessage = { message: "You Lost" };
   const equalMessage = { message: "No Consequence", operator: "=" };

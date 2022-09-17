@@ -6,6 +6,7 @@ import { UserContextProvider } from "../store/user-context";
 import { useUser } from "@auth0/nextjs-auth0";
 import { RetreiveFromStorage } from "../Helpers/gameState";
 import { retreiveUserData } from "../Components/PriceDisplay/Funcs/handleData";
+import Head from "next/head";
 
 const BitcoinGame = () => {
   const { user } = useUser();
@@ -44,6 +45,9 @@ const BitcoinGame = () => {
   console.log("starting state: ", startingState);
   return (
     <AUTH_GUARD>
+      <Head>
+        <title>Play</title>
+      </Head>
       <UserContextProvider />
       <TimeContextProvider>
         <PriceDisplay startingState={startingState} />

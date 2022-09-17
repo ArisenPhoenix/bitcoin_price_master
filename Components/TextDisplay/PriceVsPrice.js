@@ -1,4 +1,5 @@
 import css from "./PriceVsPrice.module.css";
+import Operator from "./Operator";
 
 const PriceVsPrice = (props) => {
   return (
@@ -18,11 +19,12 @@ const PriceVsPrice = (props) => {
           </tr>
           <tr className={css.operatorTd}>
             <td colSpan="2" className={css.operatorTd}>
-              <h1 className={`${css.operator}`}>
+              {/* <h1 className={`${css.operator}`}>
                 {props.selection && props.selection !== "false"
                   ? props.selection
                   : ""}
-              </h1>
+              </h1> */}
+              <Operator operatorObj={props.selection} contains="selection" />
             </td>
           </tr>
 

@@ -6,7 +6,7 @@ export const get_current_price = async (setPrice) => {
     price: current_price.usd,
     time: current_price.last_updated_at,
   };
-  console.log("get_current_price newData: ", newData);
+  // console.log("get_current_price newData: ", newData);
   setPrice({ ...newData });
 };
 

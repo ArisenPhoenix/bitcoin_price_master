@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import css from "./Link.module.css";
 
-const Link1 = (props) => {
+const Link_ = (props) => {
   const classes = `${css.controls} ${props.className}`;
   return (
     <Link href={props.href}>
@@ -26,4 +26,4 @@ const Link1 = (props) => {
 //   );
 // };
 
-export default Link1;
+export default Link_;

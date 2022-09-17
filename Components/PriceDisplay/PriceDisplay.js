@@ -33,8 +33,6 @@ const PriceDisplay = (props) => {
     : timeCtx.areButtonsLocked;
   const setAreButtonsLocked = timeCtx.setButtonsLocked;
 
-  // console.log(currentPrice);
-
   useEffect(() => {
     setPrevPrice(g.previousPrice);
     setCurrentPrice(g.currentPrice);
@@ -60,13 +58,8 @@ const PriceDisplay = (props) => {
 
   useEffect(() => {
     // Initial Render and Setup of the game
-    console.log("IN USE EFFECT INIT | CURRENT PRICE[0]: ", currentPrice.price);
-
     if (currentPrice.time !== 0 && prevPrice.time !== 0) {
       if (currentPrice.price === 0) {
-        console.log(
-          "getting current price........................................"
-        );
         get_current_price(setCurrentPrice, "first useEffect get_current_price");
       }
 
@@ -113,7 +106,7 @@ const PriceDisplay = (props) => {
   };
 
   const scoreLower = () => {
-    // If User Believes Price Will Be Higher
+    // If User Believes Price Will Be Lower
     setSelection({ text: "<", selection: "<" });
     toggleButtons(true);
     setMessage(null);
@@ -173,7 +166,7 @@ const PriceDisplay = (props) => {
 
         <PriceVsPrice
           // Message Board At The Bottom
-          selection={selection.selection}
+          selection={selection}
           prevPrice={prevPrice.price ? prevPrice.price : 0}
           nextPrice={currentPrice.price ? currentPrice.price : 0}
         />

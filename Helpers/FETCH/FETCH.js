@@ -25,6 +25,7 @@ export default FETCH;
 import { dataToItem, itemToData } from "dynamo-converters";
 export const AWS_GET = async (data, setStorage) => {
   const retreivedData = await FETCH("/api/get_user", "POST", data);
+  // console.log("RETREIVED DATA: ", retreivedData);
   const fixedData = itemToData(retreivedData);
   setStorage(fixedData);
   return fixedData;
@@ -33,5 +34,6 @@ export const AWS_GET = async (data, setStorage) => {
 export const AWS_PUT = async (data) => {
   const dataToSend = dataToItem(data);
   const result = await FETCH("/api/get_user", "PUT", dataToSend);
+  // console.log("AWS_PUT RESULT: ", result);
   return result;
 };
