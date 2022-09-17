@@ -1,21 +1,24 @@
 import { AWS_PUT } from "./FETCH/FETCH";
 
-export const SaveToStorage = (gameState, option) => {
+export const SAVE_TO_LOCAL_STORAGE = (gameState, option, email) => {
   const data = JSON.stringify(gameState);
-  const oldData = RetreiveFromStorage();
-  localStorage.setItem("gameState", data);
+  const oldData = RETREIVE_FROM_LOCAL_STORAGE();
+  localStorage.setItem(email ? email + "gameState" : "gameState", data);
   if (oldData.score !== gameState.score && option !== "init") {
     AWS_PUT(gameState);
   }
 };
 
-export const RetreiveFromStorage = () => {
+export const RETREIVE_FROM_LOCAL_STORAGE = (email) => {
   let userGameData;
   try {
-    userGameData = localStorage.getItem("gameState");
+    userGameData = localStorage.getItem(
+      email ? email + "gameState" : "gameState"
+    );
     userGameData = JSON.parse(userGameData);
   } catch (err) {
     console.log(err);
+    return null;
   }
   return userGameData;
 };
@@ -24,6 +27,6 @@ export const RemoveFromStorage = () => {
   try {
     localStorage.removeItem("gameState");
   } catch {
-    console.log();
+    console.log("removed from local storage");
   }
 };

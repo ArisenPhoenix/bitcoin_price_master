@@ -10,7 +10,7 @@ import Message from "../TextDisplay/Message";
 import { useEffect, useState, useContext } from "react";
 import { get_current_price, get_next_price } from "./Funcs/getPriceRequests";
 import { useUser } from "@auth0/nextjs-auth0";
-import { SaveToStorage } from "../../Helpers/gameState";
+import { SAVE_TO_LOCAL_STORAGE } from "../../Helpers/gameState";
 import ScoreSetter from "./Funcs/ScoreSetter";
 
 const PriceDisplay = (props) => {
@@ -63,7 +63,7 @@ const PriceDisplay = (props) => {
         get_current_price(setCurrentPrice, "first useEffect get_current_price");
       }
 
-      SaveToStorage(userState);
+      SAVE_TO_LOCAL_STORAGE(userState);
     }
   }, [currentPrice.time, prevPrice.time]);
 
