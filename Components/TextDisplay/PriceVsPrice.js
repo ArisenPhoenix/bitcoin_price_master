@@ -1,7 +1,6 @@
 import css from "./PriceVsPrice.module.css";
 
 const PriceVsPrice = (props) => {
-  console.log("PriceVsPrice Props: ", props);
   return (
     <div className={css.container}>
       <div className={css.heading}>

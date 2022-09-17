@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PriceDisplay from "../Components/PriceDisplay/PriceDisplay";
 import { TimeContextProvider } from "../store/time-context";
 import AUTH_GUARD from "../AUTH_GUARD/AUTH_GUARD";
 import { UserContextProvider } from "../store/user-context";
 import { useUser } from "@auth0/nextjs-auth0";
 import { RetreiveFromStorage } from "../Helpers/gameState";
-import { retreiveUserData } from "../Components/PriceDisplay/handleData";
+import { retreiveUserData } from "../Components/PriceDisplay/Funcs/handleData";
 
 const BitcoinGame = () => {
-  const { user, isLoading } = useUser();
+  const { user } = useUser();
 
   const [storage, setStorage] = useState({});
 
@@ -19,7 +19,7 @@ const BitcoinGame = () => {
     const userData = retreiveUserData("Init", email, setStorage);
     const s = userData.selction;
     if (!s || !s.selection || !s.text) {
-      userData.selction = { selection: "", text: "" };
+      userData.selction = { selection: "false", text: "false" };
     }
     const gameData = userData ? userData : localData;
     setStorage(userData);
@@ -41,9 +41,7 @@ const BitcoinGame = () => {
     message: g.message ? g.message : false,
     gameCommenced: g.gameCommenced ? g.gameCommenced : false,
   };
-
-  console.log("Starting State: ", startingState);
-
+  console.log("starting state: ", startingState);
   return (
     <AUTH_GUARD>
       <UserContextProvider />

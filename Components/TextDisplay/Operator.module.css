@@ -1,0 +1,25 @@
+.operatorTd {
+  width: 100%;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.operator {
+  font-size: 3rem;
+}
+
+.centered {
+  text-align: center;
+}
+
+.message {
+  font-size: xx-large;
+}
+
+@media screen and (max-width: 550px) {
+  .operatorTd,
+  .operator {
+    text-align: right !important;
+    margin-right: 15%;
+  }
+}

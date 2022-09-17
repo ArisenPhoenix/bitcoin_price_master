@@ -1,6 +1,5 @@
-import { saveUserData } from "../Components/PriceDisplay/handleData";
 import { AWS_PUT } from "./FETCH/FETCH";
-// import { dataToItem } from "";
+
 export const SaveToStorage = (gameState, option) => {
   const data = JSON.stringify(gameState);
   const oldData = RetreiveFromStorage();

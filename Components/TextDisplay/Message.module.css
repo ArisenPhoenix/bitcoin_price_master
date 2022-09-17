@@ -65,9 +65,4 @@
   .right {
     width: 25%;
   }
-  .operatorId,
-  .operator {
-    text-align: right !important;
-    margin-right: 15%;
-  }
 }

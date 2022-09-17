@@ -2,15 +2,16 @@ import css from "./PriceDisplay.module.css";
 import Card from "../UI/Card/Card";
 import Buttons from "../Buttons/Buttons";
 import NumberTable from "../TextDisplay/NumberTable";
-import comparePrices from "./comparePrices";
+import comparePrices from "./Funcs/comparePrices";
 import TimeContext from "../../store/time-context";
 import useCountDown from "../../hooks/useCountDown";
 import PriceVsPrice from "../TextDisplay/PriceVsPrice";
 import Message from "../TextDisplay/Message";
 import { useEffect, useState, useContext } from "react";
-import { get_current_price, get_next_price } from "./getPriceRequests";
+import { get_current_price, get_next_price } from "./Funcs/getPriceRequests";
 import { useUser } from "@auth0/nextjs-auth0";
 import { SaveToStorage } from "../../Helpers/gameState";
+import ScoreSetter from "./Funcs/ScoreSetter";
 
 const PriceDisplay = (props) => {
   // Persisting State
@@ -96,17 +97,7 @@ const PriceDisplay = (props) => {
 
   const scoreSetter = (subtract) => {
     // Updates The Score
-    setScore((prev) => {
-      if (subtract) {
-        if (prev <= 0) {
-          return 0;
-        } else {
-          return prev - 1;
-        }
-      } else {
-        return prev + 1;
-      }
-    });
+    ScoreSetter(subtract, setScore);
   };
 
   const toggleButtons = (boolean) => {
@@ -118,12 +109,14 @@ const PriceDisplay = (props) => {
     // If User Believes Price Will Be Higher
     setSelection({ text: ">", selection: ">" });
     toggleButtons(true);
+    setMessage(null);
   };
 
   const scoreLower = () => {
     // If User Believes Price Will Be Higher
     setSelection({ text: "<", selection: "<" });
     toggleButtons(true);
+    setMessage(null);
   };
 
   useEffect(() => {
@@ -169,15 +162,18 @@ const PriceDisplay = (props) => {
           <h1 className={`${css.center} ${css.results}`}>Results</h1>
         </Card>
 
+        {message && !areButtonsLocked && (
+          <Message
+            messageBool={areButtonsLocked}
+            winLoseMessage={message}
+            prevPrice={prevPrice.price ? prevPrice.price : 0}
+            nextPrice={currentPrice.price ? currentPrice.price : 0}
+          />
+        )}
+
         <PriceVsPrice
           // Message Board At The Bottom
           selection={selection.selection}
-          prevPrice={prevPrice.price ? prevPrice.price : 0}
-          nextPrice={currentPrice.price ? currentPrice.price : 0}
-        />
-        <Message
-          messageBool={areButtonsLocked}
-          winLoseMessage={message}
           prevPrice={prevPrice.price ? prevPrice.price : 0}
           nextPrice={currentPrice.price ? currentPrice.price : 0}
         />

@@ -1,4 +1,3 @@
-import { saveUserData } from "./handleData";
 export const increaseScore = (setScore) => {
   console.log("score + 1");
   setScore(false);

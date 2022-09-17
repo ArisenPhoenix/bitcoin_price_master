@@ -14,7 +14,9 @@ const FETCH = async (api_route, method, body, functionThatCalled) => {
     const data = await response.json();
     return data;
   } catch (err) {
-    console.error("ERROR IN CATCH............................................");
+    console.error(
+      `ERROR IN FETCH CATCH | Called By: ${functionThatCalled}............................................`
+    );
   }
 };
 
@@ -24,7 +26,6 @@ import { dataToItem, itemToData } from "dynamo-converters";
 export const AWS_GET = async (data, setStorage) => {
   const retreivedData = await FETCH("/api/get_user", "POST", data);
   const fixedData = itemToData(retreivedData);
-  console.log("AWS_GET DATA: ", fixedData);
   setStorage(fixedData);
   return fixedData;
 };
@@ -32,6 +33,5 @@ export const AWS_GET = async (data, setStorage) => {
 export const AWS_PUT = async (data) => {
   const dataToSend = dataToItem(data);
   const result = await FETCH("/api/get_user", "PUT", dataToSend);
-  console.log("AWS PUT RESULT: ", result);
   return result;
 };

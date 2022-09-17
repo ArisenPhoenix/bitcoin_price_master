@@ -1,5 +1,5 @@
-import { AWS_GET, AWS_PUT } from "../../Helpers/FETCH/FETCH";
-import { RetreiveFromStorage, SaveToStorage } from "../../Helpers/gameState";
+import { AWS_GET, AWS_PUT } from "../../../Helpers/FETCH/FETCH";
+import { RetreiveFromStorage, SaveToStorage } from "../../../Helpers/gameState";
 
 export const retreiveUserData = async (
   functionThatCalled,

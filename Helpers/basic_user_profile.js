@@ -11,6 +11,7 @@ const basic_user_profile = () => {
     gameCommenced: false,
     message: "",
   };
+
   return userState;
 };
 

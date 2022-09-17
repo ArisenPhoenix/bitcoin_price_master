@@ -1,4 +1,3 @@
-import { useUser } from "@auth0/nextjs-auth0";
 import AWS from "aws-sdk";
 const SERVERSIDE_GET_AWS_CALL = async (email) => {
   //   const { user } = useUser();

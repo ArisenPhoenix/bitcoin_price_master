@@ -1,4 +1,4 @@
-import FETCH from "../../Helpers/FETCH/FETCH";
+import FETCH from "../../../Helpers/FETCH/FETCH";
 export const get_current_price = async (setPrice) => {
   const current_price_data = await FETCH("/api/get_current_price", "GET");
   const current_price = current_price_data.bitcoin;

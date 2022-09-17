@@ -5,6 +5,7 @@
 
 .container {
   padding: 2% 10% 2% 10%;
+  margin-bottom: 5%;
   width: 100%;
   text-align: center;
 }
@@ -65,7 +66,7 @@
   .right {
     width: 25%;
   }
-  .operatorId,
+  .operatorTd,
   .operator {
     text-align: right !important;
     margin-right: 15%;

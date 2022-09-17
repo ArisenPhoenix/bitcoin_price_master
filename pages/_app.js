@@ -8,9 +8,9 @@ import { NavigationContextProvider } from "../store/navigation-context";
 import BootStrapContainer from "../Components/UI/BootStrap/BootStrapContainer";
 
 function BitcoinGuesser({ Component, pageProps }) {
-  console.log("base_url: ", process.env.AUTH0_BASE_URL);
-  console.log("issuer base_url: ", process.env.AUTH0_ISSUER_BASE_URL);
-  console.log("next public base_url: ", process.env.NEXT_PUBLIC_AUTH0_BASE_URL);
+  // console.log("base_url: ", process.env.AUTH0_BASE_URL);
+  // console.log("issuer base_url: ", process.env.AUTH0_ISSUER_BASE_URL);
+  // console.log("next public base_url: ", process.env.NEXT_PUBLIC_AUTH0_BASE_URL);
   return (
     <SSRProvider>
       <ThemeProvider breakpoints={["xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}>
@@ -34,10 +34,3 @@ function BitcoinGuesser({ Component, pageProps }) {
 }
 
 export default BitcoinGuesser;
-
-// import FETCH from "../Helpers/FETCH/FETCH";
-// const login = async (data) => {
-//   return FETCH("/api/login", "POST", data, "LOGIN FRONT END");
-// };
-
-// export default login;
