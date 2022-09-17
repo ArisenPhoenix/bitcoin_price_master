@@ -8,7 +8,6 @@ import { NavigationContextProvider } from "../store/navigation-context";
 import BootStrapContainer from "../Components/UI/BootStrap/BootStrapContainer";
 
 function BitcoinGuesser({ Component, pageProps }) {
-  // console.log("next public base_url: ", process.env.NEXT_PUBLIC_AUTH0_BASE_URL);
   return (
     <SSRProvider>
       <ThemeProvider breakpoints={["xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}>

@@ -7,7 +7,6 @@ import { useContext } from "react";
 import NavigationContext from "../../../../store/navigation-context";
 import { AUTH_CONTEXT } from "../../../../AUTH_GUARD/AUTH_GUARD";
 import { useUser } from "@auth0/nextjs-auth0";
-import Link from "../../Link/Link";
 
 const Header = () => {
   const authCtx = useContext(AUTH_CONTEXT);

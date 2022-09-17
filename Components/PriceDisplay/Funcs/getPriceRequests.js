@@ -15,7 +15,7 @@ export const get_current_price = async (
     price: current_price.usd,
     time: current_price.last_updated_at,
   };
-  console.log("current price option is: ", option);
+  // console.log("current price option is: ", option);
 
   if (option === "all") {
     setCurrent({ ...newData });

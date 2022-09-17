@@ -60,7 +60,7 @@ const PriceDisplay = (props) => {
   useEffect(() => {
     // Initial Render
     // Could Add In Logic To Change Prices Based On The Already Stored Time and Get a response historically as well.
-    console.log("Inside Initial useEffect");
+    // console.log("Inside Initial useEffect");
     if (currentPrice.price === 0 || prevPrice.price === 0) {
       console.log("gameCommenced");
       if (currentPrice.price === 0 && prevPrice.price === 0) {
@@ -72,7 +72,7 @@ const PriceDisplay = (props) => {
           setPrevPrice
         );
       } else if (prevPrice.price === 0 && currentPrice.price !== 0) {
-        console.log("prevPrice is 0 but currentPrice is not");
+        // console.log("prevPrice is 0 but currentPrice is not");
         get_current_price(setCurrentPrice, "current", "Initial useEffect if");
       }
     }
@@ -81,7 +81,7 @@ const PriceDisplay = (props) => {
   useEffect(() => {
     if (pricesCompared) {
       const answer = SAVE_TO_LOCAL_STORAGE(userState);
-      console.log("answer to saving: ", answer);
+      // console.log("answer to saving: ", answer);
       setPricesCompared(false);
     }
   }, [pricesCompared]);
@@ -97,7 +97,7 @@ const PriceDisplay = (props) => {
       scoreSetter,
       setMessage
     );
-    console.log("compared the prices");
+    // console.log("compared the prices");
     setPrevPrice(currentPrice);
     setCurrentPrice(newCurrentPrice);
     setSelection((prev) => {
@@ -118,7 +118,7 @@ const PriceDisplay = (props) => {
     if (!gameCommenced) {
       setGameCommenced(true);
     }
-    console.log("userState: ", userState);
+    // console.log("userState: ", userState);
   };
 
   const scoreHigher = () => {

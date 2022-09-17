@@ -20,8 +20,6 @@ export const UserContextProvider = (props) => {
     userName: user.name,
   };
 
-  // console.log("USER DATA: ", contextValue);
-
   return (
     <UserContext.Provider value={contextValue}>
       {props.children}

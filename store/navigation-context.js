@@ -1,7 +1,5 @@
 import { createContext } from "react";
 
-// import { linkify } from "../Helpers/GeneralPurpose/Strings";
-
 const NavigationContext = createContext({
   linkify: () => {},
   landing: "/",

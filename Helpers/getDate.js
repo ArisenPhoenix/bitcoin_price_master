@@ -8,8 +8,6 @@ export const get_current_date = () => {
   if (mm < 10) mm = "0" + mm;
 
   const formattedToday = dd + "-" + mm + "-" + yyyy;
-
-  console.log("currentDate: ", formattedToday);
   return formattedToday;
 };
 

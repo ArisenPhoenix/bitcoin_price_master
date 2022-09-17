@@ -32,7 +32,7 @@ const FETCH = async (api_route, method, body, functionThatCalled) => {
 export default FETCH;
 
 export const AWS_GET = async (email, setStorage) => {
-  console.log("GETTING AWS");
+  // console.log("GETTING AWS");
   const retreivedData = await FETCH("/api/get_user", "POST", email);
   // console.log("RETREIVED DATA: ", retreivedData);
   if (retreivedData.error) {
@@ -41,7 +41,7 @@ export const AWS_GET = async (email, setStorage) => {
   try {
     const fixedData = itemToData(retreivedData);
     setStorage && setStorage(fixedData);
-    console.log("AWS_GET DATA: ", fixedData);
+    // console.log("AWS_GET DATA: ", fixedData);
     return fixedData;
   } catch (err) {
     console.log("AWS GET ERROR: ", err);

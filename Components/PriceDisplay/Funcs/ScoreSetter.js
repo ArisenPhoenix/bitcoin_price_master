@@ -1,5 +1,4 @@
 const scoreSetter = (subtract, setScore) => {
-  // Updates The Score
   setScore((prev) => {
     if (subtract) {
       if (prev <= 0) {
