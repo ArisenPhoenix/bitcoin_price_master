@@ -8,7 +8,7 @@ const Buttons = (props) => {
         <Button
           className={css.higher}
           type="action"
-          text="Higher"
+          text="Up"
           onClick={props.onClickHigher}
           locked={props.locked}
         />
@@ -18,7 +18,7 @@ const Buttons = (props) => {
         <Button
           className={css.lower}
           type="action"
-          text="Lower"
+          text="Down"
           onClick={props.onClickLower}
           locked={props.locked}
         />

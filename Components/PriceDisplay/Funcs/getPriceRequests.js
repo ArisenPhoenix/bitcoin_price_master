@@ -3,7 +3,8 @@ export const get_current_price = async (
   setCurrent,
   option,
   functionThatCalled,
-  setPrevious
+  setPrevious,
+  currentPrice
 ) => {
   if (functionThatCalled) {
     // For Debugging
@@ -24,6 +25,9 @@ export const get_current_price = async (
     setCurrent({ ...newData });
   } else if (option === "previous") {
     setPrevious({ ...newData });
+  } else if (option === "update") {
+    setPrevious(currentPrice);
+    setCurrent({ ...newData });
   } else if (option === "none") {
     return { ...newData };
   }

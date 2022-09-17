@@ -16,7 +16,7 @@ const BitcoinGame = () => {
   useEffect(() => {
     if (user) {
       let email = user && user.email ? user.email : null;
-      const localData = RETREIVE_FROM_LOCAL_STORAGE(email);
+      const localData = RETREIVE_FROM_LOCAL_STORAGE(user);
       email = email ? email : localData.UserEmail;
       let userData = loginUser(user, setStorage);
       const s = userData.selction;

@@ -14,14 +14,19 @@ const callAWS = async (req, res) => {
       TableName: "Users",
       Key: { UserEmail: { S: UserEmail } },
     };
+
     return await new Promise((resolve, reject) => {
       dynamoDB.getItem(params, (err, data) => {
         if (err) {
+          console.log(
+            "Error ---------------------------------------------------------------------------------"
+          );
           console.log("CALL ERROR: ", err);
+          res.status(400);
           return reject(res.send(err));
         } else {
-          // console.log("AWS GET_CALL DATA: ", data);
           const newData = JSON.stringify(data.Item);
+          res.status(200);
           return resolve(res.send(newData));
         }
       });
@@ -33,13 +38,17 @@ const callAWS = async (req, res) => {
         ...userData,
       },
     };
-
     return await new Promise((resolve, reject) => {
       dynamoDB.putItem(params, (err, data) => {
         if (err) {
+          es.status(400);
+          console.log(
+            "Error ---------------------------------------------------------------------------------"
+          );
           console.log("AWS PUT CALL ERROR: ", err);
           return reject(res.send(JSON.stringify(err)));
         } else {
+          res.status(200);
           // console.log("PUT CALL DATA: ", data);
           return resolve(res.send(JSON.stringify(data)));
         }

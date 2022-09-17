@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 // Time Limit Made for testing so you don't have to wait a minute each time you go through the debugging.
-const timeLimit = 3;
+const timeLimit = process.env.TIME_LIMIT ? Number(process.env.TIME_LIMIT) : 60;
 
 const TimeContext = createContext({
   timeLimit: timeLimit,

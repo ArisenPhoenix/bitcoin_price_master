@@ -60,20 +60,21 @@ const PriceDisplay = (props) => {
   useEffect(() => {
     // Initial Render
     // Could Add In Logic To Change Prices Based On The Already Stored Time and Get a response historically as well.
-    // console.log("Inside Initial useEffect");
     if (currentPrice.price === 0 || prevPrice.price === 0) {
-      console.log("gameCommenced");
       if (currentPrice.price === 0 && prevPrice.price === 0) {
-        console.log("Both Prices are the same");
         get_current_price(
           setCurrentPrice,
           "all",
           "Initial useEffect if",
           setPrevPrice
         );
-      } else if (prevPrice.price === 0 && currentPrice.price !== 0) {
-        // console.log("prevPrice is 0 but currentPrice is not");
-        get_current_price(setCurrentPrice, "current", "Initial useEffect if");
+      } else if (currentPrice.price !== 0 && prevPrice.price === 0) {
+        get_current_price(
+          setCurrentPrice,
+          "update",
+          "Initial useEffect else if",
+          setPrevPrice
+        );
       }
     }
   }, [currentPrice.price, prevPrice.price]);
@@ -109,11 +110,12 @@ const PriceDisplay = (props) => {
 
   const scoreSetter = (subtract) => {
     // Updates The Score
+    // Inside This Function Just to Keep As Much Logic Out Of The Component
     ScoreSetter(subtract, setScore);
   };
 
   const toggleButtons = (boolean) => {
-    // Well... Toggles the buttons to disabled or not
+    // Well... Toggles the buttons to disabled or not as well allows for the game to flow correctly in other aspects
     areButtonsLocked ? setAreButtonsLocked(false) : setAreButtonsLocked(true);
     if (!gameCommenced) {
       setGameCommenced(true);

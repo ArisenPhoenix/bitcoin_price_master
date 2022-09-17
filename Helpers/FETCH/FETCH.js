@@ -14,6 +14,9 @@ const FETCH = async (api_route, method, body, functionThatCalled) => {
       },
       body: m === "GET" ? null : JSON.stringify(b),
     });
+    if (response.error || response.status == 400) {
+      return response;
+    }
     // console.log("FETCH DATA RESPONSE: ", response);
     const data = await response.json();
     // console.log("FETCH DATA json: ", data);
@@ -32,16 +35,13 @@ const FETCH = async (api_route, method, body, functionThatCalled) => {
 export default FETCH;
 
 export const AWS_GET = async (email, setStorage) => {
-  // console.log("GETTING AWS");
   const retreivedData = await FETCH("/api/get_user", "POST", email);
-  // console.log("RETREIVED DATA: ", retreivedData);
-  if (retreivedData.error) {
+  if (retreivedData.error || retreivedData.status == 400) {
     return retreivedData;
   }
   try {
     const fixedData = itemToData(retreivedData);
     setStorage && setStorage(fixedData);
-    // console.log("AWS_GET DATA: ", fixedData);
     return fixedData;
   } catch (err) {
     console.log("AWS GET ERROR: ", err);
@@ -50,8 +50,6 @@ export const AWS_GET = async (email, setStorage) => {
 };
 
 export const AWS_PUT = async (data) => {
-  console.log("SAVING TO AWS, Data: ", data);
-
   let dataToSend;
   let result;
   try {
