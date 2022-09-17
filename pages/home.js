@@ -4,34 +4,32 @@ import { TimeContextProvider } from "../store/time-context";
 import AUTH_GUARD from "../AUTH_GUARD/AUTH_GUARD";
 import { UserContextProvider } from "../store/user-context";
 import { useUser } from "@auth0/nextjs-auth0";
-import { RETREIVE_FROM_LOCAL_STORAGE } from "../Helpers/gameState";
-import { retreiveUserData } from "../Components/PriceDisplay/Funcs/handleData";
+import { RETREIVE_FROM_LOCAL_STORAGE } from "../Helpers/handleLocalStorage";
+import LoadingScreen from "../Components/UI/LoadingScreen/LoadingScreen";
 import Head from "next/head";
-import basic_user_profile from "../Helpers/basic_user_profile";
+import { loginUser } from "../Components/PriceDisplay/Funcs/signUserIn";
 
 const BitcoinGame = () => {
   const { user } = useUser();
-
   const [storage, setStorage] = useState({});
 
   useEffect(() => {
-    let email = user && user.email ? user.email : null;
-    const localData = RETREIVE_FROM_LOCAL_STORAGE(email);
-
-    email = email ? email : localData.UserEmail;
-    const userData = retreiveUserData("Init", email, setStorage);
-    const s = userData.selction;
-    if (!s || !s.selection || !s.text) {
-      userData.selction = { selection: "false", text: "false" };
+    if (user) {
+      let email = user && user.email ? user.email : null;
+      const localData = RETREIVE_FROM_LOCAL_STORAGE(email);
+      email = email ? email : localData.UserEmail;
+      let userData = loginUser(user, setStorage);
+      const s = userData.selction;
+      if (!s || !s.selection || !s.text) {
+        userData.selction = { selection: "false", text: "false" };
+      }
+      setStorage(userData);
     }
-    const gameData = userData
-      ? userData
-      : localData
-      ? localData
-      : basic_user_profile();
-
-    setStorage(gameData);
   }, [user]);
+
+  if (!user) {
+    return <LoadingScreen isLoading={true} />;
+  }
 
   const g = storage ? storage : {};
 

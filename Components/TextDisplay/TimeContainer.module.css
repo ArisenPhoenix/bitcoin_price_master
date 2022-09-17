@@ -1,0 +1,44 @@
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes antiSpin {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 8px solid #b12020;
+  border-top: 8px solid #ff0606c4;
+  border-radius: 50%;
+  animation: spinner 60s linear infinite;
+  background-color: transparent;
+}
+
+.container {
+  width: 100%;
+  height: fit-content;
+  margin: auto;
+  position: static;
+  margin-top: 3vw;
+}
+
+/* .antiSpin {
+  width: 50px;
+  height: 50px;
+  border: 8px solid transparent;
+  border-top: 8px solid transparent;
+  border-radius: 50%;
+  animation: spinner 60s linear infinite;
+  position: absolute !important;
+} */

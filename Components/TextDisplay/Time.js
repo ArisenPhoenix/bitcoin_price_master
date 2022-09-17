@@ -4,15 +4,19 @@ import { Fragment } from "react";
 const Time = (props) => {
   let colorClass = css.white;
   const checkTime = Number(props.time);
-
+  let color;
   if (props.countingDown === true) {
     if (checkTime < 5) {
       colorClass = css.green;
+      color = "green";
     } else if (checkTime < 10) {
+      color = "yellow";
       colorClass = css.yellow;
     } else if (checkTime < 15) {
+      color = "orange";
       colorClass = css.orange;
     } else if (checkTime < 20) {
+      color = "orange";
       colorClass = css.red;
     }
   }

@@ -6,5 +6,6 @@ const nextConfig = {
     domains: ["lh3.googleusercontent.com"],
     formats: ["image/avif", "image/webp"],
   },
+  optimizeFonts: false,
 };
 module.exports = nextConfig;

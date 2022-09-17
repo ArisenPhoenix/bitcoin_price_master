@@ -33,13 +33,14 @@ const callAWS = async (req, res) => {
         ...userData,
       },
     };
+
     return await new Promise((resolve, reject) => {
       dynamoDB.putItem(params, (err, data) => {
         if (err) {
           console.log("AWS PUT CALL ERROR: ", err);
           return reject(res.send(JSON.stringify(err)));
         } else {
-          console.log("PUT CALL DATA: ", data);
+          // console.log("PUT CALL DATA: ", data);
           return resolve(res.send(JSON.stringify(data)));
         }
       });

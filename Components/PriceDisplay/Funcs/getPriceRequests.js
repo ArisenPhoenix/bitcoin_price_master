@@ -1,22 +1,33 @@
 import FETCH from "../../../Helpers/FETCH/FETCH";
-export const get_current_price = async (setPrice) => {
+export const get_current_price = async (
+  setCurrent,
+  option,
+  functionThatCalled,
+  setPrevious
+) => {
+  if (functionThatCalled) {
+    // For Debugging
+    console.log(functionThatCalled);
+  }
   const current_price_data = await FETCH("/api/get_current_price", "GET");
   const current_price = current_price_data.bitcoin;
   const newData = {
     price: current_price.usd,
     time: current_price.last_updated_at,
   };
-  // console.log("get_current_price newData: ", newData);
-  setPrice({ ...newData });
-};
+  console.log("current price option is: ", option);
 
-export const get_next_price = async () => {
-  const nextPrice_data = await FETCH("/api/get_current_price", "GET");
-  const nextPrice = nextPrice_data.bitcoin;
-  const newData = {
-    price: nextPrice.usd,
-    time: nextPrice.last_updated_at,
-  };
+  if (option === "all") {
+    setCurrent({ ...newData });
+    setPrevious && setPrevious({ ...newData });
+  } else if (option === "current") {
+    setCurrent({ ...newData });
+  } else if (option === "previous") {
+    setPrevious({ ...newData });
+  } else if (option === "none") {
+    return { ...newData };
+  }
+  // console.log("get_current_price newData: ", newData);
   return { ...newData };
 };
 

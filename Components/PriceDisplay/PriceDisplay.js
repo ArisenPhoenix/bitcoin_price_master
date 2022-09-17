@@ -8,16 +8,17 @@ import useCountDown from "../../hooks/useCountDown";
 import PriceVsPrice from "../TextDisplay/PriceVsPrice";
 import Message from "../TextDisplay/Message";
 import { useEffect, useState, useContext } from "react";
-import { get_current_price, get_next_price } from "./Funcs/getPriceRequests";
+import { get_current_price } from "./Funcs/getPriceRequests";
 import { useUser } from "@auth0/nextjs-auth0";
-import { SAVE_TO_LOCAL_STORAGE } from "../../Helpers/gameState";
+import { SAVE_TO_LOCAL_STORAGE } from "../../Helpers/handleLocalStorage";
 import ScoreSetter from "./Funcs/ScoreSetter";
 
 const PriceDisplay = (props) => {
   // Persisting State
   const g = props.startingState;
-  const { user } = useUser();
   const timeCtx = useContext(TimeContext);
+  const { user } = useUser();
+
   const time = g.timeRemaining
     ? useCountDown(g.timeRemaining)
     : useCountDown(timeCtx.timeLimit);
@@ -27,22 +28,12 @@ const PriceDisplay = (props) => {
   const [score, setScore] = useState(g.score);
   const [selection, setSelection] = useState(g.selection);
   const [message, setMessage] = useState(g.message);
+  const [pricesCompared, setPricesCompared] = useState(false);
   const [gameCommenced, setGameCommenced] = useState(g.gameCommenced);
   const areButtonsLocked = g.areButtonsLocked
     ? g.areButtonsLocked
     : timeCtx.areButtonsLocked;
   const setAreButtonsLocked = timeCtx.setButtonsLocked;
-
-  useEffect(() => {
-    setPrevPrice(g.previousPrice);
-    setCurrentPrice(g.currentPrice);
-    setScore(g.score);
-    const newSelection = g.selection ? g.selection : selection;
-    // setSelection(newSelection);
-    setMessage(g.message);
-    setGameCommenced(g.gameCommenced);
-  }, [props]);
-
   const userState = {
     userName: user.name,
     UserEmail: user.email,
@@ -57,21 +48,48 @@ const PriceDisplay = (props) => {
   };
 
   useEffect(() => {
-    // Initial Render and Setup of the game
-    if (currentPrice.time !== 0 && prevPrice.time !== 0) {
-      if (currentPrice.price === 0) {
-        get_current_price(setCurrentPrice, "first useEffect get_current_price");
-      }
+    //  Initial Setup of the game
+    setPrevPrice(g.previousPrice);
+    setCurrentPrice(g.currentPrice);
+    setScore(g.score);
+    const newSelection = g.selection ? g.selection : selection;
+    setSelection(newSelection);
+    setMessage(g.message);
+  }, [props]);
 
-      SAVE_TO_LOCAL_STORAGE(userState);
+  useEffect(() => {
+    // Initial Render
+    // Could Add In Logic To Change Prices Based On The Already Stored Time and Get a response historically as well.
+    console.log("Inside Initial useEffect");
+    if (currentPrice.price === 0 || prevPrice.price === 0) {
+      console.log("gameCommenced");
+      if (currentPrice.price === 0 && prevPrice.price === 0) {
+        console.log("Both Prices are the same");
+        get_current_price(
+          setCurrentPrice,
+          "all",
+          "Initial useEffect if",
+          setPrevPrice
+        );
+      } else if (prevPrice.price === 0 && currentPrice.price !== 0) {
+        console.log("prevPrice is 0 but currentPrice is not");
+        get_current_price(setCurrentPrice, "current", "Initial useEffect if");
+      }
     }
-  }, [currentPrice.time, prevPrice.time]);
+  }, [currentPrice.price, prevPrice.price]);
+
+  useEffect(() => {
+    if (pricesCompared) {
+      const answer = SAVE_TO_LOCAL_STORAGE(userState);
+      console.log("answer to saving: ", answer);
+      setPricesCompared(false);
+    }
+  }, [pricesCompared]);
 
   const afterPlayerWaits = async () => {
     // Game Logic After Timer Runs Out
-    const newCurrentPrice = await get_next_price();
+    const newCurrentPrice = await get_current_price(null, "none", null, null);
     const newPrevPrice = currentPrice;
-
     comparePrices(
       newCurrentPrice.price,
       newPrevPrice.price,
@@ -79,13 +97,14 @@ const PriceDisplay = (props) => {
       scoreSetter,
       setMessage
     );
-
+    console.log("compared the prices");
     setPrevPrice(currentPrice);
     setCurrentPrice(newCurrentPrice);
     setSelection((prev) => {
       return { ...prev, text: "false" };
     });
     timeCtx.setWaiting(false);
+    setPricesCompared(true);
   };
 
   const scoreSetter = (subtract) => {
@@ -96,6 +115,10 @@ const PriceDisplay = (props) => {
   const toggleButtons = (boolean) => {
     // Well... Toggles the buttons to disabled or not
     areButtonsLocked ? setAreButtonsLocked(false) : setAreButtonsLocked(true);
+    if (!gameCommenced) {
+      setGameCommenced(true);
+    }
+    console.log("userState: ", userState);
   };
 
   const scoreHigher = () => {
@@ -114,9 +137,6 @@ const PriceDisplay = (props) => {
 
   useEffect(() => {
     // Game Commenced Is Just An Extra Layer of Protection Against Unforseen Events
-    if (!gameCommenced) {
-      setGameCommenced(true);
-    }
     if (
       time === timeCtx.timeLimit &&
       !areButtonsLocked &&
@@ -125,7 +145,7 @@ const PriceDisplay = (props) => {
     ) {
       afterPlayerWaits();
     }
-  }, [areButtonsLocked, gameCommenced, time]);
+  }, [areButtonsLocked, time]);
 
   return (
     <Card className={css.displayCard}>
