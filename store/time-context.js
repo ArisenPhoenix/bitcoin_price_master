@@ -2,10 +2,12 @@ import { createContext, useState } from "react";
 
 // Time Limit Made for testing so you don't have to wait a minute each time you go through the debugging.
 const timeLimit = process.env.TIME_LIMIT ? Number(process.env.TIME_LIMIT) : 60;
+// const timeLimit = 3;
 
 const TimeContext = createContext({
-  timeLimit: timeLimit,
+  timeLeft: timeLimit,
   currentTime: timeLimit,
+  setTimeLeft: () => {},
   setCurrentTime: () => {},
   areButtonsLocked: Boolean,
   setButtonsLocked: () => {},
@@ -18,6 +20,7 @@ export const TimeContextProvider = (props) => {
   const [currentTime, setCurrentTime] = useState(timeLimit);
   const [buttonsLocked, setButtonsLocked] = useState(false);
   const [waitingForNewPrice, setWaitingForPrice] = useState(false);
+  // const [timeLeft, setTimeLeft] = useState(timeLimit);
   const toggleButtons = () => {
     buttonsLocked ? setButtonsLocked(false) : setButtonsLocked(true);
   };
@@ -28,7 +31,7 @@ export const TimeContextProvider = (props) => {
     setWaitingForPrice(true);
   };
 
-  const interval = (currentTime) => {
+  const interval = () => {
     const timer = setTimeout(() => {
       setCurrentTime((prev) => {
         return prev > 0 ? prev - 1 : timeLimit;
@@ -38,7 +41,8 @@ export const TimeContextProvider = (props) => {
   };
 
   const contexValue = {
-    timeLimit: timeLimit,
+    timeLeft: timeLimit,
+    // setTimeLeft: setTimeLeft,
     currentTime: currentTime,
     areButtonsLocked: buttonsLocked,
     waiting: waitingForNewPrice,

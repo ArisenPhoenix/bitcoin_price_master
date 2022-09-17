@@ -1,11 +1,14 @@
 import { AWS_GET, AWS_PUT } from "./FETCH/FETCH";
 
-export const SAVE_TO_LOCAL_STORAGE = async (gameState) => {
+export const SAVE_TO_LOCAL_STORAGE = async (gameState, option) => {
   const data = JSON.stringify(gameState);
   const email = gameState.UserEmail;
-  let oldData = RETREIVE_FROM_LOCAL_STORAGE();
-  oldData = oldData ? oldData : await AWS_GET(email);
   const storageLocation = email ? `${email}gameState` : "gameState";
+  let oldData = RETREIVE_FROM_LOCAL_STORAGE();
+  if (option !== "time") {
+    oldData = oldData ? oldData : await AWS_GET(email);
+  }
+
   localStorage.setItem(storageLocation, data);
   if (oldData.score !== gameState.score) {
     const success = await AWS_PUT(gameState);

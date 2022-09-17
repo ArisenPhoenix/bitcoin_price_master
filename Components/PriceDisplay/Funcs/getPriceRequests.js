@@ -16,7 +16,6 @@ export const get_current_price = async (
     price: current_price.usd,
     time: current_price.last_updated_at,
   };
-  // console.log("current price option is: ", option);
 
   if (option === "all") {
     setCurrent({ ...newData });
@@ -31,13 +30,12 @@ export const get_current_price = async (
   } else if (option === "none") {
     return { ...newData };
   }
-  // console.log("get_current_price newData: ", newData);
   return { ...newData };
 };
 
 export const get_price_history = async (setPriceHistory) => {
   const price_history_data = await FETCH("/api/get_btc_history", "GET");
-  const fixed_data = price_history_data.prices.map((item, index) => {
+  const fixed_data = price_history_data.prices.map((item) => {
     return { data: new Date(item[0] * 1000), price: item[1] };
   });
   setPriceHistory(fixed_data);

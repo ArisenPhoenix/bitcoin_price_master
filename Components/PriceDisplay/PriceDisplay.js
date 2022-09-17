@@ -33,7 +33,9 @@ const PriceDisplay = (props) => {
   const areButtonsLocked = g.areButtonsLocked
     ? g.areButtonsLocked
     : timeCtx.areButtonsLocked;
+
   const setAreButtonsLocked = timeCtx.setButtonsLocked;
+
   const userState = {
     userName: user.name,
     UserEmail: user.email,
@@ -65,14 +67,16 @@ const PriceDisplay = (props) => {
         get_current_price(
           setCurrentPrice,
           "all",
-          "Initial useEffect if",
+          // "Initial useEffect if",
+          null,
           setPrevPrice
         );
       } else if (currentPrice.price !== 0 && prevPrice.price === 0) {
         get_current_price(
           setCurrentPrice,
           "update",
-          "Initial useEffect else if",
+          // "Initial useEffect else if",
+          null,
           setPrevPrice
         );
       }
@@ -81,8 +85,7 @@ const PriceDisplay = (props) => {
 
   useEffect(() => {
     if (pricesCompared) {
-      const answer = SAVE_TO_LOCAL_STORAGE(userState);
-      // console.log("answer to saving: ", answer);
+      SAVE_TO_LOCAL_STORAGE(userState);
       setPricesCompared(false);
     }
   }, [pricesCompared]);
@@ -98,7 +101,6 @@ const PriceDisplay = (props) => {
       scoreSetter,
       setMessage
     );
-    // console.log("compared the prices");
     setPrevPrice(currentPrice);
     setCurrentPrice(newCurrentPrice);
     setSelection((prev) => {
@@ -120,7 +122,6 @@ const PriceDisplay = (props) => {
     if (!gameCommenced) {
       setGameCommenced(true);
     }
-    // console.log("userState: ", userState);
   };
 
   const scoreHigher = () => {
@@ -140,7 +141,7 @@ const PriceDisplay = (props) => {
   useEffect(() => {
     // Game Commenced Is Just An Extra Layer of Protection Against Unforseen Events
     if (
-      time === timeCtx.timeLimit &&
+      time === timeCtx.timeLeft &&
       !areButtonsLocked &&
       gameCommenced &&
       timeCtx.waiting
